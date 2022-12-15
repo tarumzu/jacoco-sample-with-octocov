@@ -1,0 +1,42 @@
+apply plugin: 'com.dicedmelon.gradle.jacoco-android'
+
+tasks.withType(Test) {
+    // Robolectricを使っている場合は設定必須
+    // https://github.com/robolectric/robolectric/issues/2230
+    jacoco.includeNoLocationClasses true
+
+    // JDK 11を使っている場合は設定必須
+    // https://github.com/gradle/gradle/issues/5184#issuecomment-391982009
+    jacoco.excludes = ["jdk.internal.*"]
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+
+jacocoAndroidUnitTestReport {
+    csv.enabled false
+    html.enabled false
+    xml.enabled true
+
+    // 自動生成されるDaggerやBindingクラスなどは除外する
+    excludes += [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'androidx/**/*.*',
+            '**/*Hilt*.*',
+            '**/*Dagger*.*',
+            '**/*$ViewInjector*.*',
+            '**/*MembersInjector*.*',
+            '**/*GeneratedInjector*.*',
+            '**/*_Factory.*',
+            '**/*_Provide*Factory*.*',
+            '**/*_ViewBinding*.*',
+            '**/AutoValue_*.*',
+            "**/*Binding*.*",
+            '**/*Module*.*',
+    ]
+}
