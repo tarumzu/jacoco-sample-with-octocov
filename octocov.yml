@@ -7,7 +7,7 @@ codeToTestRatio:
     - '**/*.*'
     - '!**/*Test.*'
   test:
-    - '!**/*Test.*'
+    - '**/*Test.*'
 testExecutionTime:
   if: true
 comment:
