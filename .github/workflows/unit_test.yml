@@ -1,8 +1,11 @@
 name: unit test
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
-      - 'main'
+      - main
   workflow_dispatch:
 jobs:
   unit_test:
@@ -30,8 +33,3 @@ jobs:
       - name: Publish Jacoco Report
         if: cancelled() != true
         uses: k1LoW/octocov-action@v0
-      - name: Publish Test Report
-        if: cancelled() != true
-        uses: mikepenz/action-junit-report@v2
-        with:
-          report_paths: '**/build/test-results/*/TEST-*.xml'
