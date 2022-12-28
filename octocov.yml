@@ -1,0 +1,21 @@
+coverage:
+  paths:
+    - app/build/jacoco/jacoco.xml
+    - repository/build/jacoco/jacoco.xml
+codeToTestRatio:
+  code:
+    - '**/*.*'
+    - '!**/*Test.*'
+  test:
+    - '!**/*Test.*'
+testExecutionTime:
+  if: true
+comment:
+  if: is_pull_request
+report:
+  if: is_default_branch
+  datastores:
+    - artifact://${GITHUB_REPOSITORY}
+diff:
+  datastores:
+    - artifact://${GITHUB_REPOSITORY}
