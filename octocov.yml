@@ -19,3 +19,5 @@ report:
 diff:
   datastores:
     - artifact://${GITHUB_REPOSITORY}
+  badge:
+    path: docs/coverage.svg
