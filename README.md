@@ -1,1 +1,1 @@
-![coverage](docs/coverage.svg)
+
